@@ -6,7 +6,7 @@ const Menu = () => {
         <span className="navbar-brand fs-3">
             LOGO VIGIER AVOCATS
         </span>
-        <ul className="navbar-nav">
+        <ul className="navbar-nav ms-auto">
             <li className="nav-item">
                 <NavLink to="/" className={({isActive}) => {
                     return isActive ? "nav-link active text-light" : "nav-link"
@@ -15,12 +15,12 @@ const Menu = () => {
             <li className="nav-item">
                 <NavLink to="/" className={({isActive}) => {
                     return isActive ? "nav-link active text-light" : "nav-link"
-                }}></NavLink>
+                }}>Gros Flop</NavLink>
             </li>
             <li className="nav-item">
                 <NavLink to="/" className={({isActive}) => {
                     return isActive ? "nav-link active text-light" : "nav-link"
-                }}>Satisfaction</NavLink>
+                }}>Chef ???</NavLink>
             </li>
         </ul>
     </nav>
