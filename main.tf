@@ -108,18 +108,6 @@ resource "azurerm_mysql_database" "hof_mysql_database" {
   charset             = "utf8"
   collation           = "utf8_unicode_ci"
 
-  # create a table named users with the specified columns
-  create_table {
-    schema = <<SQL
-      CREATE TABLE users (
-        id INT PRIMARY KEY AUTO_INCREMENT,
-        category VARCHAR(255) NOT NULL,
-        text VARCHAR(255) NOT NULL,
-        author VARCHAR(255) NOT NULL,
-        link VARCHAR(1024) NOT NULL, 
-      );
-    SQL
-  }
 
   # prevent the possibility of accidental data loss
   lifecycle {
