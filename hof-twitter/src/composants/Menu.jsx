@@ -9,23 +9,6 @@ const Menu = () => {
                 <img src={Logo} style={{height: 64}}/>
             </NavLink>
         </span>
-        <ul className="navbar-nav">
-            <li className="nav-item">
-                <NavLink to="/masterclass" className={({isActive}) => {
-                    return isActive ? "nav-link active text-light" : "nav-link"
-                }}>Masterclass</NavLink>
-            </li>
-            <li className="nav-item">
-                <NavLink to="/flop" className={({isActive}) => {
-                    return isActive ? "nav-link active text-light" : "nav-link"
-                }}>Gros Flop</NavLink>
-            </li>
-            <li className="nav-item">
-                <NavLink to="/chef" className={({isActive}) => {
-                    return isActive ? "nav-link active text-light" : "nav-link"
-                }}>Chef ???</NavLink>
-            </li>
-        </ul>
     </nav>
     </div> 
     );
