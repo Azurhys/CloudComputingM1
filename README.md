@@ -29,10 +29,12 @@ NPM  >= v8.5.1
 
 ## Lancer le projet
 
-1. Dans le répertoire ./backend
+1. Dans le répertoire ./backend 
+\
     ```bash
     node server.js
 
 2. Dans le répertoire ./hof-twitter
+\
     ```bash
     npm run dev
