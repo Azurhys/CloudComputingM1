@@ -5,7 +5,7 @@ function getTweets() {
     const [tweets, setTweets] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5001/tweets') 
+        axios.get('http://20.71.38.250:5001/tweets') 
         .then(response => {setTweets(response.data)
         console.log(response.data)})
         .catch(error => console.error('Erreur lors de la récupération des tweets :', error));
