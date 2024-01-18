@@ -3,8 +3,11 @@ const app = express();
 const cors = require('cors');
 const port = 5001;
 const db = require('./db'); 
+const mysql = require('mysql');
+const fs = require('fs');
 
 app.use(cors());
+
 
 app.get('/tweets', (req, res) => {
   db.query('SELECT * FROM tweets', (err, results) => {

@@ -17,28 +17,6 @@ connection.connect((err) => {
   console.log('Connected to database');
 });
 
-function handleDisconnect() {
-  connection = mysql.createConnection(dbConfig);
 
-  connection.connect((err) => {
-    if (err) {
-      console.error('Erreur de connexion à la base de données:', err);
-      setTimeout(handleDisconnect, 2000); // réessayez la connexion après 2 secondes
-    }
-    console.log('Connecté à la base de données');
-  });
-
-  connection.on('error', (err) => {
-    console.error('Erreur de base de données:', err);
-
-    if (err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'ECONNRESET') {
-      handleDisconnect();
-    } else {
-      throw err;
-    }
-  });
-}
-
-handleDisconnect();
 
 module.exports = connection;

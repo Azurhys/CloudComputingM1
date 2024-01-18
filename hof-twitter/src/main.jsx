@@ -12,7 +12,7 @@ import Accueil from './composants/Accueil';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
       <Routes>
-        <Route path='/accueil' element={<App />}>
+        <Route path='/' element={<App />}>
         </Route>
       </Routes>
   </BrowserRouter>
