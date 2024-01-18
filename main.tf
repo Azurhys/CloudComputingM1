@@ -34,7 +34,7 @@ resource "azurerm_subnet" "hof_subnet" {
 }
 
 resource "azurerm_public_ip" "hof_public_ip" {
-  name                = "hof-public-ip"
+  name                = "hof_public_ip"
   resource_group_name = azurerm_resource_group.hof_app_rg.name
   location            = azurerm_resource_group.hof_app_rg.location
   allocation_method  = "Dynamic"
@@ -62,7 +62,7 @@ resource "azurerm_network_security_rule" "port_rule_ssh" {
 
 resource "azurerm_network_security_rule" "port_rule_mysql" {
   name                        = "mysql"
-  priority                    = 100
+  priority                    = 101
   direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "Tcp"
@@ -76,7 +76,7 @@ resource "azurerm_network_security_rule" "port_rule_mysql" {
 
 resource "azurerm_network_security_rule" "port_rule_web" {
   name                        = "web"
-  priority                    = 100
+  priority                    = 102
   direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "Tcp"
