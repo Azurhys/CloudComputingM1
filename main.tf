@@ -33,6 +33,61 @@ resource "azurerm_subnet" "hof_subnet" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 
+resource "azurerm_public_ip" "hof_public_ip" {
+  name                = "hof-public-ip"
+  resource_group_name = azurerm_resource_group.hof_app_rg.name
+  location            = azurerm_resource_group.hof_app_rg.location
+  allocation_method  = "Dynamic"
+}
+
+resource "azurerm_network_security_group" "hof_net_secu_group" {
+  name                = "hof_secu_group"
+  location            = azurerm_resource_group.hof_app_rg.location
+  resource_group_name = azurerm_resource_group.hof_app_rg.name
+}
+
+resource "azurerm_network_security_rule" "port_rule_ssh" {
+  name                        = "ssh"
+  priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "22"
+  source_address_prefixes = ["0.0.0.0/0"]
+  destination_address_prefixes = ["0.0.0.0/0"]
+  resource_group_name         = azurerm_resource_group.hof_app_rg.name
+  network_security_group_name = azurerm_network_security_group.hof_net_secu_group.name
+}
+
+resource "azurerm_network_security_rule" "port_rule_mysql" {
+  name                        = "mysql"
+  priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "5173"
+  source_address_prefixes = ["0.0.0.0/0"]
+  destination_address_prefixes = ["0.0.0.0/0"]
+  resource_group_name         = azurerm_resource_group.hof_app_rg.name
+  network_security_group_name = azurerm_network_security_group.hof_net_secu_group.name
+}
+
+resource "azurerm_network_security_rule" "port_rule_web" {
+  name                        = "web"
+  priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "5001"
+  source_address_prefixes = ["0.0.0.0/0"]
+  destination_address_prefixes = ["0.0.0.0/0"]
+  resource_group_name         = azurerm_resource_group.hof_app_rg.name
+  network_security_group_name = azurerm_network_security_group.hof_net_secu_group.name
+}
+
 resource "azurerm_network_interface" "hof_network_interface" {
   name                = "hof-nic"
   location            = azurerm_resource_group.hof_app_rg.location
@@ -42,6 +97,7 @@ resource "azurerm_network_interface" "hof_network_interface" {
     name                          = "hof-ip"
     subnet_id                     = azurerm_subnet.hof_subnet.id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id = azurerm_public_ip.hof_public_ip.id
   }
 }
 
@@ -56,7 +112,7 @@ resource "azurerm_linux_virtual_machine" "react_app_vm" {
 
   admin_ssh_key {
     username   = "adminuser-hof"
-    public_key = file("~/.ssh/id_rsa.pub")
+    public_key = file("~/.ssh/id_rsa_hof.pub")
   }
 
   os_disk {
