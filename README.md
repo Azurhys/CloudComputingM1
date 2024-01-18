@@ -6,7 +6,9 @@ Projet réalisé dans le cadre du cours de cloud computing en M1 à H3Hitema
 
 ## Prérequis
 
-Node >= v16.2.0
+Node >= v16.2.0 
+\
+\
 NPM  >= v8.5.1
 
 ## Installation
