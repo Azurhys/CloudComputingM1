@@ -17,16 +17,20 @@ NPM  >= v8.5.1
    git clone https://github.com/Azurhys/CloudComputingM1.git
 
 2. Dans le répertoire ./backend
+    ```bash
     npm i
     node insert-data.js
 
 3. Dans le répertoire ./hof-twitter
+    ```bash
     npm i
 
 ## Lancer le projet
 
 1. Dans le répertoire ./backend
+    ```bash
     node server.js
 
 2. Dans le répertoire ./hof-twitter
+    ```bash
     npm run dev
